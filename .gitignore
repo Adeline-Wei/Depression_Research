@@ -12,3 +12,15 @@
 Illegal_Users/
 
 LIWC2007 Documents/
+
+1_preprocessing/liwcDictionary\.pickle
+
+1_preprocessing/liwcExtractor\.py
+
+tmp_notes
+
+1_preprocessing/stopwords_dict_ordinary
+
+1_preprocessing/stopwords_dict_depression
+
+1_preprocessing/__pycache__/liwcExtractor\.cpython-35\.pyc

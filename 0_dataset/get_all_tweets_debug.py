@@ -64,14 +64,14 @@ def main():
     api = tweepy.API(auth)
     user_list = getUserIdList()
     # Check every user in your list
-    for id_num_tuple in user_list:
+    for i, id_num_tuple in enumerate(user_list):
         global count_num
         count_num = 0
         userID = id_num_tuple[0]
         diagnosedTime = id_num_tuple[1]
         try:
             username = getUsername(api, userID)
-	    print('Username: {0}'.format(username))
+            print('{0}\tUsername: {1}'.format(i, username))
             # print(str(user_list.index(id_num_tuple)+1) + '\t' + username + '\t' + id_num_tuple[1])
         except:
             print('UserID ' + userID + ' is not found on Twitter..')
@@ -86,9 +86,9 @@ def main():
             # print('Duplicate user: ' + userID +'\n')
             with open(out_folder + '/' + userID) as open_file:
                 last_line = open_file.readlines()[-1].strip().split('\t')
-        	from_time = str(diagnosedTime - timedelta(days=365*1))[0:10]
-                print('Collecting data from {0} to {1}...'.format(from_time[0:10], last_line[2][0:10])) 
-        	tweetCriteria = got.manager.TweetCriteria().setUsername(username).setSince(from_time).setUntil(last_line[2][0:10]).setMaxTweets(0)
+            from_time = str(diagnosedTime - timedelta(days=365*1))[0:10]
+            print('Collecting data from {0} to {1}...'.format(from_time[0:10], last_line[2][0:10])) 
+            tweetCriteria = got.manager.TweetCriteria().setUsername(username).setSince(from_time).setUntil(last_line[2][0:10])
 
             # continue
         else:
@@ -96,7 +96,7 @@ def main():
             from_time = str(diagnosedTime - timedelta(days=365*1))[0:10]
             until_time = str(diagnosedTime + timedelta(days=30))[0:10]
             print('{0} diagnosed at {1}, crawling from {2}'.format(username, until_time, from_time))
-	    tweetCriteria = got.manager.TweetCriteria().setUsername(username).setSince(from_time).setUntil(until_time).setMaxTweets(0)
+            tweetCriteria = got.manager.TweetCriteria().setUsername(username).setSince(from_time).setUntil(until_time)
             
         # Method to handle the tweet buffer
         # From got.manager.TweetManager.getTweets(tweetCriteria, tweetsToFile, 100)
@@ -116,11 +116,11 @@ def main():
             
             # Show how many tweets you have collected, also show the time (You can check the time to decide restart time)
             
-	    print('{}\tTotal {} tweets in {}/{}\tCurrent oldest tweet {}'.format(str(datetime.now())[:-7], str(count_num), out_folder, userID, tweets[-1].date))
+            print('{}\tTotal {} tweets in {}/{}\tCurrent oldest tweet {}'.format(str(datetime.now())[:-7], str(count_num), out_folder, userID, tweets[-1].date))
             
 
-
-	got.manager.TweetManager.getTweets(tweetCriteria, tweetsToFile, 100)
+        # Weird code here <tab> or not
+        got.manager.TweetManager.getTweets(tweetCriteria, tweetsToFile, 100)
         
         print('\n\n')
         # Time out to prevend IP ban

@@ -70,3 +70,5 @@ userInfo
 0_dataset/sampleOrdinaryIDs
 
 0_dataset/ordinaryIDs
+
+1_preprocessing/groupTfidfResultCase3Idf_

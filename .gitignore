@@ -72,3 +72,9 @@ userInfo
 0_dataset/ordinaryIDs
 
 1_preprocessing/groupTfidfResultCase3Idf_
+
+English_to_IPA/tests/
+
+English_to_IPA/src/
+
+English_to_IPA/

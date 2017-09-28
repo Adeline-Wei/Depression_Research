@@ -78,3 +78,7 @@ English_to_IPA/tests/
 English_to_IPA/src/
 
 English_to_IPA/
+
+1_preprocessing/eSPEPhonologicalFeatures
+
+1_preprocessing/eSPEPhonologicalTable
